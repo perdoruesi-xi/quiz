@@ -2,7 +2,7 @@
 
 Welcome to the Islamic Quiz repository! This application was aimed to mosques that wanted to have their quizzes for teaching islamic knowledge, however, it is a general project, which makes it possible to use it in other topics as well. In this repository you can find all the files needed to configure this project for your needs.
 
-The interface is in Albanian Language, because it was intended for Albanian users.
+The interface is in Albanian Language, because it was intended for Albanian users at the [Ikre Mosque Quiz](http://kuizi.ikre-bern.ch/).
 
 ##Description
 
