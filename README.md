@@ -6,22 +6,22 @@ The interface is in Albanian Language, because it was intended for Albanian user
 
 ##Description
 
-	###Users
-		The project only has admin users. Quiz users' information and score is not stored anywhere in the system.
-		Admins can add, edit, delete questions and admin users(If they have the priority).
-		Admins with priority 1 can edit, delete other admins and also manage the questions.
-		Admins with priority 2 can only edit their own data and manage the questions.
+###Users
+The project only has admin users. Quiz users' information and score is not stored anywhere in the system.
+Admins can add, edit, delete questions and admin users(If they have the priority).
+Admins with priority 1 can edit, delete other admins and also manage the questions.
+Admins with priority 2 can only edit their own data and manage the questions.
 
-	### Questions
-	 	Questions are either active or inactive. Only active questions show up in the quiz, the inactive questions show up in the admin panel.
-		Questions are categorised into four categories:
-		1. Fill in the blanks
-		2. Open questions
-		3. Multiple choice(A,B,C,D)
-		4. Multiple choice(YES/NO)
-		5. With images
+### Questions
+Questions are either active or inactive. Only active questions show up in the quiz, the inactive questions show up in the admin panel.
+Questions are categorised into four categories:
+1. Fill in the blanks
+2. Open questions
+3. Multiple choice(A,B,C,D)
+4. Multiple choice(YES/NO)
+5. With images
 
-		The questions are ordered by categories, you can change the order in the admin_pyetje.php file.
+The questions are ordered by categories, you can change the order in the admin_pyetje.php file.
 
 ## Usage
 
