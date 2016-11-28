@@ -7,7 +7,7 @@ The interface is in Albanian Language, because it was intended for Albanian user
 ##Description
 
 	###Users
-		The project only has admin users. Users' information and score is not stored anywhere in the system.
+		The project only has admin users. Quiz users' information and score is not stored anywhere in the system.
 		Admins can add, edit, delete questions and admin users(If they have the priority).
 		Admins with priority 1 can edit, delete other admins and also manage the questions.
 		Admins with priority 2 can only edit their own data and manage the questions.
