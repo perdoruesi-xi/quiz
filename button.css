@@ -1,0 +1,112 @@
+button:disabled 
+{
+  background: #d6d6d6;
+  border-color: #d6d6d6;
+  cursor: not-allowed;
+}
+button:disabled:hover 
+{
+  background-color: #d6d6d6;
+  border-bottom: 6px solid #d6d6d6;
+}
+/*UPDATE*/
+.update 
+{
+  background-color: #3c8ad8;
+  border: 0;
+  border-bottom: 6px solid #7cb0e5;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-align:center;
+  padding: 15px 20px 5px 20px;
+  width:24.5%;
+  transition: all .1s ease-in-out;}
+
+.update:focus 
+{
+  outline: 0;
+}
+.update:hover 
+{
+  background-color: #2671bc;
+  border-bottom: 6px solid #1d5791;
+}
+.update:enabled:active 
+{
+  transform: translate(0px, 2px);
+  box-shadow: inset 0px 6px 6px 0px rgba(50, 50, 50, 0.25);
+  background: #2164a6;
+}
+/*DELETE*/
+.delete 
+{
+  background-color: #D83C3C;
+  border: 0;
+  border-bottom: 6px solid #bc2626;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-align:center;
+  padding: 15px 20px 5px 20px;
+  width:24.5%;
+  transition: all .1s ease-in-out;
+}/*
+.delete:disabled 
+{
+  background: #d6d6d6;
+  border-color: #d6d6d6;
+  cursor: not-allowed;
+}
+.delete:disabled:hover 
+{
+  background-color: #d6d6d6;
+  border-bottom: 6px solid #d6d6d6;
+}*/
+.delete:focus 
+{
+  outline: 0;
+}
+.delete:hover 
+{
+  background-color: #bc2626;
+  border-bottom: 6px solid #e57c7c;
+}
+.delete:enabled:active 
+{
+  transform: translate(0px, 2px);
+  box-shadow: inset 0px 6px 6px 0px rgba(50, 50, 50, 0.25);
+  background: #7b1919;
+}
+/*REGISTER*/
+.register 
+{
+  background-color: #8ad83c;
+  border: 0;
+  border-bottom: 6px solid #64a621;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-align:center;
+  padding: 15px 20px 5px 20px;
+  width:24.5%;
+  transition: all .1s ease-in-out;}
+
+.register:focus 
+{
+  outline: 0;
+}
+.register:hover 
+{
+  background-color: #71bc26;
+  border-bottom: 6px solid #b0e57c;
+}
+.register:enabled:active 
+{
+  transform: translate(0px, 2px);
+  box-shadow: inset 0px 6px 6px 0px rgba(50, 50, 50, 0.25);
+  background: #57921d;
+}
