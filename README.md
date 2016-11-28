@@ -15,11 +15,11 @@ Admins with priority 2 can only edit their own data and manage the questions.
 ### Questions
 Questions are either active or inactive. Only active questions show up in the quiz, the inactive questions show up in the admin panel.
 Questions are categorised into four categories:
-1. Fill in the blanks
-2. Open questions
-3. Multiple choice(A,B,C,D)
-4. Multiple choice(YES/NO)
-5. With images
+	1. Fill in the blanks
+	2. Open questions
+	3. Multiple choice(A,B,C,D)
+	4. Multiple choice(YES/NO)
+	5. With images
 
 The questions are ordered by categories, you can change the order in the admin_pyetje.php file.
 
