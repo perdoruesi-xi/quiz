@@ -7,9 +7,13 @@ The interface is in Albanian Language, because it was intended for Albanian user
 ##Description
 
 	###Users
-		The project only has admin users. Users' information and score is not stored anywhere in the system. Questions are either active or inactive. Only active questions show up in the quiz, the inactive questions show up in the admin panel. Admins can add, edit, delete questions and admin users(If they have the priority). Admins with priority 1 can edit, delete other admins and also manage the questions. Admins with priority 2 can only edit their own data and manage the questions.
+		The project only has admin users. Users' information and score is not stored anywhere in the system.
+		Admins can add, edit, delete questions and admin users(If they have the priority).
+		Admins with priority 1 can edit, delete other admins and also manage the questions.
+		Admins with priority 2 can only edit their own data and manage the questions.
 
 	### Questions
+	 	Questions are either active or inactive. Only active questions show up in the quiz, the inactive questions show up in the admin panel.
 		Questions are categorised into four categories:
 		1. Fill in the blanks
 		2. Open questions
