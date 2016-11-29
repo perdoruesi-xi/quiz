@@ -15,18 +15,18 @@ if ($conn->connect_error)
 
 	$sql="SELECT order_only From tblorder";
 	$result=$conn->query($sql);
-	$x="";
+	$order="";
 	if($result->num_rows>0)
 	{
-		while($rreshti=$result->fetch_assoc())
+		while($row=$result->fetch_assoc())
 		{
-			$x=$rreshti['order_only'];
+			$order=$row['order_only'];
 		}
 
 	}
 	else
 	{
-		$x="1,2,3,4";
+		$order="1,2,3,4";
 	}
 $hide;
 if(!isset($_SESSION["aid"]))
@@ -37,9 +37,9 @@ if(!isset($_SESSION["aid"]))
 	echo '</script>';
 	#header("Location:index.php");				
 }
-if($_SESSION["privilegji"]==2)
+if($_SESSION["priviledge"]==2)
 	$hide="hide";
-else if($_SESSION["privilegji"]==1)
+else if($_SESSION["priviledge"]==1)
 	$hide='show';
 $aidSesion=$_SESSION["aid"];
 if(isset($_POST["logout"]))
@@ -124,41 +124,41 @@ $passdb="";
 //ruhet pyetja e re
 if(isset($_POST['PyetjaRegister']))
 {
-	$txt=$_POST['txtPyetjes'];
+	$txt=$_POST['question'];
 	$id=$_POST['PID'];
-	$psakte=$_POST['psakte'];
-	$alternativat=$_POST['alternativat'];
-	$aktive=$_POST['aktive'];
-	$kategoria;
-	if($aktive=="PO")
-		$aktive=1;
+	$right_answer=$_POST['right_answer'];
+	$alternatives=$_POST['alternatives'];
+	$active=$_POST['active'];
+	$category;
+	if($active=="PO")
+		$active=1;
 	else
-		$aktive=0;
+		$active=0;
 	$fl=fileUpload();
 	if(strpos($txt,"_"))
 	{					
-		$kategoria=1;
+		$category=1;
 	}
 	else
 	{
 		if($fl!=="")
-			$kategoria=5;
+			$category=5;
 		else
 		{
-			if($alternativat=="")
+			if($alternatives=="")
 			{
-				$kategoria=2;
+				$category=2;
 			}
-			else if($alternativat!="")
+			else if($alternatives!="")
 			{				
-				if($psakte=="PO" or $psakte=="JO")
+				if($right_answer=="PO" or $right_answer=="JO")
 				{					
-						$kategoria=4;					
+						$category=4;					
 				}
 				else
 				{
 
-						$kategoria=3;
+						$category=3;
 				}
 			}		
 		}
@@ -166,9 +166,9 @@ if(isset($_POST['PyetjaRegister']))
 
 	$SQLINSERT="";
 	if($fl!="")
-		$SQLINSERT="INSERT into tblpyetja(txtPyetjes,pSakte,alternativat, aktive, fotoLocation, kategoria) Values (\"".$txt."\",\"".$psakte."\",\"".$alternativat."\",".$aktive.",\"".$fl."\",".$kategoria.")";
+		$SQLINSERT="INSERT into tblpyetja(question,right_answer,alternatives, active, fotoLocation, category) Values (\"".$txt."\",\"".$right_answer."\",\"".$alternatives."\",".$active.",\"".$fl."\",".$category.")";
 	else
-		$SQLINSERT="INSERT into tblpyetja(txtPyetjes,pSakte,alternativat, aktive, kategoria) Values ('".$txt."','".$psakte."','".$alternativat."',".$aktive.",".$kategoria.")";
+		$SQLINSERT="INSERT into tblpyetja(question,right_answer,alternatives, active, category) Values ('".$txt."','".$right_answer."','".$alternatives."',".$active.",".$category.")";
 	$insert=$conn->query($SQLINSERT);
 	if($insert==TRUE)
 	{
@@ -196,48 +196,48 @@ if(isset($_POST['PyetjaRegister']))
 if(isset($_POST['PyetjaUpdate']))
 {
 
-	$txt=$_POST['txtPyetjes'];
+	$txt=$_POST['question'];
 	$id=$_POST['PID'];
-	$psakte=$_POST['psakte'];
-	$alternativat=$_POST['alternativat'];
-	$aktive=$_POST['aktive'];
+	$right_answer=$_POST['right_answer'];
+	$alternatives=$_POST['alternatives'];
+	$active=$_POST['active'];
 	$fl=fileUpload();
-	if($aktive=="PO")
-		$aktive=1;
+	if($active=="PO")
+		$active=1;
 	else
-		$aktive=0;
+		$active=0;
 	if(strpos($txt,"_"))
 	{					
-		$kategoria=1;
+		$category=1;
 	}
 	else
 	{
 		if($fl!=="")
-			$kategoria=5;
+			$category=5;
 		else
 		{
-			if($alternativat=="")
+			if($alternatives=="")
 			{
-				$kategoria=2;
+				$category=2;
 			}
-			else if($alternativat!="")
+			else if($alternatives!="")
 			{				
-				if($psakte=="PO" or $psakte=="JO")
+				if($right_answer=="PO" or $right_answer=="JO")
 				{					
-						$kategoria=4;					
+						$category=4;					
 				}
 				else
 				{
 
-						$kategoria=3;
+						$category=3;
 				}
 			}		
 		}
 	}
 	if($fl!="")
-		$SQLUPDATE="UPDATE tblpyetja SET txtPyetjes='".$txt."',psakte='".$psakte."', alternativat='".$alternativat."',fotoLocation='".$fl."', aktive=".$aktive.", kategoria=".$kategoria." WHERE PID=".$id;
+		$SQLUPDATE="UPDATE tblpyetja SET question='".$txt."',right_answer='".$right_answer."', alternatives='".$alternatives."',fotoLocation='".$fl."', active=".$active.", category=".$category." WHERE PID=".$id;
 	else
-		$SQLUPDATE="UPDATE tblpyetja SET txtPyetjes='".$txt."',psakte='".$psakte."', alternativat='".$alternativat."', aktive=".$aktive.", kategoria=".$kategoria." WHERE PID=".$id;
+		$SQLUPDATE="UPDATE tblpyetja SET question='".$txt."',right_answer='".$right_answer."', alternatives='".$alternatives."', active=".$active.", category=".$category." WHERE PID=".$id;
 	$update=$conn->query($SQLUPDATE);
 	if($update==TRUE)
 	{
@@ -318,9 +318,9 @@ if(isset($_SESSION['delsuccess'])&&$_SESSION['delsuccess']=true)
 function edit(pid)
 {
 
-	id=document.getElementById('pid');	txt=document.getElementById('txtpyetjes');
-	alt=document.getElementById('alternativat');
-	ps=document.getElementById('psakte');
+	id=document.getElementById('pid');	txt=document.getElementById('question');
+	alt=document.getElementById('alternatives');
+	ps=document.getElementById('right_answer');
 
 	pd=document.getElementById(pid).childNodes[0].innerHTML;
 	id.value=pd;
@@ -331,8 +331,8 @@ function edit(pid)
 	alter=document.getElementById(pid).childNodes[2].innerHTML;
 	alt.value=alter;
 	
-	psakte=document.getElementById(pid).childNodes[3].innerHTML;
-	ps.value=psakte;
+	right_answer=document.getElementById(pid).childNodes[3].innerHTML;
+	ps.value=right_answer;
 	//document.getElementbyId('pid').value=pid;
 
 }
@@ -357,19 +357,19 @@ function edit(pid)
 			<div class='row header blue'>
 				
 				<div class='cell' style="width:350px">Pyetja</div>
-				<div class='cell'>Alternativat</div>
+				<div class='cell'>alternatives</div>
 				<div class='cell'>Pergjigja e sakte</div>				
 				<div class='cell'>Foto</div>
-				<div class='cell'>Aktive/Joaktive</div>
+				<div class='cell'>Active/Joactive</div>
 			</div>
 			<div class='row'>
 				<input type="hidden" name="PID" id="pid" >
-				<div class='cell' style="width:auto;height:auto;word-wrap:normal;word-break:break-all;"><input type="text" name="txtPyetjes" id='txtpyetjes' style="width:100%;height:80%" required></div>
-				<div class='cell' style="width:auto;height:auto;word-wrap:normal;word-break:break-all;"><input type="text" id="alternativat" name="alternativat" id='alternativat'  style="width:100%;height:80%"></div>
-				<div class='cell' style="width:auto;height:auto;word-wrap:normal;word-break:break-all;"><input type="text" name="psakte" id='psakte'  style="width:100%;height:80%"></div>	
+				<div class='cell' style="width:auto;height:auto;word-wrap:normal;word-break:break-all;"><input type="text" name="question" id='question' style="width:100%;height:80%" required></div>
+				<div class='cell' style="width:auto;height:auto;word-wrap:normal;word-break:break-all;"><input type="text" id="alternatives" name="alternatives" id='alternatives'  style="width:100%;height:80%"></div>
+				<div class='cell' style="width:auto;height:auto;word-wrap:normal;word-break:break-all;"><input type="text" name="right_answer" id='right_answer'  style="width:100%;height:80%"></div>	
 				<div class='cell' style="width:auto"><input type="file" name="file" id="file"></div>
 				<div class='cell' style="width:auto">				
-					<select id="aktive" name="aktive">
+					<select id="active" name="active">
 						<option value="PO">PO</option>
 						<option value="JO">JO</option>
 					</select>
@@ -388,7 +388,7 @@ function edit(pid)
 <br>
 <div class="wrapper"  style="background-color: rgb(245, 248, 249);">
 <h2 style="font-family: 'Open Sans', sans-serif;">Ndrysho renditjen e pyetjeve sipas kategorisë (sipas rendit nga lartë poshtë):</h2><br>
-<h4 >Renditja e tanishme: <span id="displayorder"><?php echo $x;?></span>.</h4>
+<h4 >Renditja e tanishme: <span id="displayorder"><?php echo $order;?></span>.</h4>
 <div id="order" >
 <script>
 var source;

@@ -33,15 +33,15 @@ if(!empty($_GET["aid"]))
 
 			echo "</div>";			
 	
-		while($rreshti=$result->fetch_assoc())
+		while($row=$result->fetch_assoc())
 		{
-			echo "<div class='row' id='".$rreshti['AID']."'>";
-				echo "<div class='cell'>".$rreshti['AID']."</div>";
-				echo "<div class='cell'>".$rreshti['Fjalekalimi']."</div>";
-				echo "<div class='cell'>".$rreshti['Privilegji']."</div>";
-				$pid=$rreshti['AID'];
+			echo "<div class='row' id='".$row['AID']."'>";
+				echo "<div class='cell'>".$row['AID']."</div>";
+				echo "<div class='cell'>".$row['Fjalekalimi']."</div>";//password
+				echo "<div class='cell'>".$row['Privilegji']."</div>";//priviledge
+				$pid=$row['AID'];
 
-				echo "<div class='cell'><a title='Kliko per te ndryshuar kete rresht!' href='#form' onclick='edit(".$pid.")';return false;'>Ndrysho</a></div>";
+				echo "<div class='cell'><a title='Kliko per te ndryshuar kete rresht!' href='#form' onclick='edit(".$pid.")';return false;'>Ndrysho</a></div>";//edit or delete
 
 			echo "</div>";
 			

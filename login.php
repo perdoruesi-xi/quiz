@@ -14,7 +14,7 @@ $dbname = "dbname";
 	
 	$idDB="";
 	$passDB="";
-	$privilegji=NULL;
+	$priviledge=NULL;
 
 	$conn = new mysqli($servername, $username, $passwordDB,$dbname);
 	// Check connection
@@ -36,10 +36,10 @@ $dbname = "dbname";
 				{
 					$idDB=$row["AID"];
 					$passDB=$row["Fjalekalimi"];
-					$privilegji=$row["Privilegji"];
+					$priviledge=$row["Privilegji"];
 					if($passDB==$row['Fjalekalimi'])
 					{					
-						$_SESSION["privilegji"]=$privilegji;
+						$_SESSION["priviledge"]=$priviledge;
 						$_SESSION["aid"]=$idDB;
 						header("Location:admin.php");				
 						exit;

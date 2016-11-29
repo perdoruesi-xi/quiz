@@ -10,9 +10,9 @@ session_start();
 
 if(!isset($_SESSION["aid"]))
 	header("Location:index.php");				
-if($_SESSION["privilegji"]==1)
+if($_SESSION["priviledge"]==1)
 	$hide="hide";
-else if($_SESSION["privilegji"]==2)
+else if($_SESSION["priviledge"]==2)
 	$hide='show';
 
 ?>

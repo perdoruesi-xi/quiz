@@ -19,9 +19,9 @@ $sqlo="select query from tblorder where ID=1";
 $result=$conn->query($sqlo);
 if($result->num_rows>0)
 {
-	while($rreshti=$result->fetch_assoc())
+	while($row=$result->fetch_assoc())
 	{
-		$sql=$rreshti['query'];
+		$sql=$row['query'];
 	}
 }
 else
@@ -29,22 +29,22 @@ else
 	$sql="SELECT PID From tblpyetja WHERE aktive=1 order by kategoria";
 }
 $result=$conn->query($sql);
-$pyetjet=array();
+$questions=array();
 if($result->num_rows>0)
 {
-	while($rreshti=$result->fetch_assoc())
+	while($row=$result->fetch_assoc())
 	{
-		$pyetjet[]=$rreshti['PID'];
-		$_SESSION['pids']=$_SESSION['pids'].$rreshti['PID'].",";
+		$questions[]=$row['PID'];
+		$_SESSION['pids']=$_SESSION['pids'].$row['PID'].",";
 	}
-	$_SESSION['total']=count($pyetjet);
+	$_SESSION['total']=count($questions);
 }
 else
 {
-	unset($pyetjet);
-	$pyetjet=array();
+	unset($questions);
+	$questions=array();
 }
-if(count($pyetjet)==0)
+if(count($questions)==0)
 	$h="none";
 else
 	$h="inline";
@@ -107,7 +107,7 @@ function drop(ev)
 <!--AJAX KERKESA-->
 <script>
 var xmlHttp = createXmlHttpRequestObject();
-var pyetjet = [];
+var questions = [];
 
 
 k=-1;
@@ -136,18 +136,18 @@ else
     return xmlHttp;
 }
 
-function processpyetje()
+function processpyetje()//send AJAX request to nxjerrpyetje.php
 {
 	if(xmlHttp.readyState==0 || xmlHttp.readyState==4)
 	{
-		pyetjet=document.getElementById("pids").value.split(" ");
-		pyetjet.pop();
-		if(k<pyetjet.length-1)
+		questions=document.getElementById("pids").value.split(" ");
+		questions.pop();
+		if(k<questions.length-1)
 		{
 			k++;
-			if(pyetjet.length==0)
-				pyetjet[k]=null;
-			xmlHttp.open("GET", "nxjerrpyetje.php?pid=" + pyetjet[k],true);
+			if(questions.length==0)
+				questions[k]=null;
+			xmlHttp.open("GET", "nxjerrpyetje.php?pid=" + questions[k],true);
 		}
 		else 
 		{
@@ -165,7 +165,8 @@ function processpyetje()
 	}
 }
 
-function handleServerResponse(){
+function handleServerResponse()//gets AJAX request results
+{
 if(xmlHttp.readyState==4){ 
     if(xmlHttp.status==200)
 	{
@@ -176,8 +177,8 @@ if(xmlHttp.readyState==4){
 		ps=p.split('\'')[0];
 		x=xmlHttp.responseText.split('|')[1];
 		y=x.split('\'')[0];
-		document.getElementById('progtxt').innerHTML="Pyetja "+y+"/"+<?php echo count($pyetjet)?>;
-		a=(y/<?php echo count($pyetjet);?>);
+		document.getElementById('progtxt').innerHTML="Pyetja "+y+"/"+<?php echo count($questions)?>;
+		a=(y/<?php echo count($questions);?>);
 		document.getElementById('progbar').style.width=(a*100)+"%";
 
 
@@ -189,7 +190,7 @@ if(xmlHttp.readyState==4){
 	}
 }
 }
-function showans(x)
+function showans(x)//shows right answer
 {
 	if(x=="fill")
 	{
@@ -226,7 +227,7 @@ function in_array(array, el) {
 			return false;
 }
 
-function validot(id)
+function validot(id)//validates open questions
 {
 	x=document.getElementById(id);
 	if(x.value.toUpperCase().trim()==ps.toUpperCase().trim())
@@ -234,7 +235,7 @@ function validot(id)
 	else
 		x.className='input_wrong';
 }
-function validof()
+function validof()//validates fill in the blank questions
 {
 	p=ps.split(",");
 	p[1]=p[1].trimLeft();
@@ -261,7 +262,7 @@ function validof()
 		x2.className='input_wrong';
 	}
 }
-function validob(alt)
+function validob(alt)//validates multiple choice questions
 {
 	x=document.getElementById(alt);
 	if(alt.trim()!=ps.trim())
@@ -283,8 +284,8 @@ function validob(alt)
 </head>
 <body class='body' style="background-color:white" onload="processpyetje();">
 <input type="hidden" name="nrpGET" id="pyc" value="<?php echo $pt;?>">
-<input type="hidden" name="nrt" id="pytot" value="<?php echo count($pyetjet);?>">
-<input type="hidden" name="nrt" id="pids" value="<?php foreach($pyetjet as $p) echo $p." ";?>">
+<input type="hidden" name="nrt" id="pytot" value="<?php echo count($questions);?>">
+<input type="hidden" name="nrt" id="pids" value="<?php foreach($questions as $p) echo $p." ";?>">
 
 <div  id="rezultatipyetje" style="min-height:97.5%;height:auto;"></div>
 	

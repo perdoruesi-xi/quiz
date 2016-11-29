@@ -36,24 +36,24 @@ if(isset($_GET["txt"]))
 				echo "<div class='cell'>Ndrysho</div>";
 			echo "</div>";			
 
-		while($rreshti=$result->fetch_assoc())
+		while($row=$result->fetch_assoc())
 		{
-			echo "<div class='row' id='".$rreshti['PID']."'>";
-				echo "<div class='cell'>".$rreshti['PID']."</div>";
-				echo "<div class='cell'>".$rreshti['txtPyetjes']."</div>";
-				echo "<div class='cell'>".$rreshti['alternativat']."</div>";
-				echo "<div class='cell'>".$rreshti['pSakte']."</div>";			
-				if($rreshti['fotoLocation']=='')
+			echo "<div class='row' id='".$row['PID']."'>";
+				echo "<div class='cell'>".$row['PID']."</div>";
+				echo "<div class='cell'>".$row['txtPyetjes']."</div>";//question
+				echo "<div class='cell'>".$row['alternativat']."</div>";//alternatives
+				echo "<div class='cell'>".$row['pSakte']."</div>";//right answer
+				if($row['fotoLocation']=='')//image check
 					echo "Kjo pyetje nuk ka fotografi!";
 				else
-					echo "<div class='cell' >".$rreshti['fotoLocation']."</div>";
-				if($rreshti['aktive']==1)
+					echo "<div class='cell' >".$row['fotoLocation']."</div>";
+				if($row['aktive']==1)//active check
 					echo "<div class='cell'>PO</div>";
 				else
 					echo "<div class='cell'>JO</div>";
-				$pid=$rreshti['PID'];
+				$pid=$row['PID'];
 
-				echo "<div class='cell'><a title='Kliko per te ndryshuar kete rresht!' href='#form' onclick='edit(".$pid.")';return false;'>Ndrysho</a></div>";
+				echo "<div class='cell'><a title='Kliko per te ndryshuar kete rresht!' href='#form' onclick='edit(".$pid.")';return false;'>Ndrysho</a></div>";//edit or delete
 			echo "</div>";
 			
 			
@@ -61,10 +61,11 @@ if(isset($_GET["txt"]))
 
 	}
 	else
-		{
-			echo "Kerkesa juaj nuk mund te plotesohet! Te dhenat tuaja jane gabim!";
-			
-		}
+	{
+		//cannot process order
+		echo "Kerkesa juaj nuk mund te plotesohet! Te dhenat tuaja jane gabim!";
+		
+	}
 	$conn->close();
 }
 echo '</response>';

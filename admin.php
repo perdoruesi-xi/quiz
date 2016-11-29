@@ -1,9 +1,9 @@
 <?php
 require('header.php');
 
-if($_SESSION["privilegji"]==2)
+if($_SESSION["priviledge"]==2)
 	$hide="none";
-else if($_SESSION["privilegji"]==1)
+else if($_SESSION["priviledge"]==1)
 	$hide='inline';
 
 ?>
@@ -75,9 +75,9 @@ if(!isset($_SESSION["aid"]))
 	header("Location:index.php");				
 			
 
-if($_SESSION["privilegji"]==2)
+if($_SESSION["priviledge"]==2)
 	$hide="hide";
-else if($_SESSION["privilegji"]==1)
+else if($_SESSION["priviledge"]==1)
 	$hide='show';
 $aidSesion=$_SESSION["aid"];
 if(isset($_POST["logout"]))

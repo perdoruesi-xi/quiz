@@ -35,7 +35,7 @@ function processorder()
 		if(ul.childNodes[i].nodeName === 'LI')
 		{
 			switch(ul.childNodes[i].innerHTML.toUpperCase())
-			{
+			{//outputs categories with their order
 				case "1. Fjali me fjalë që mungojnë".toUpperCase():
 					x=1;y+="~~"+x;break;
 				case "2. Shkruaj përgjigjen".toUpperCase():
@@ -59,7 +59,7 @@ function processorder()
 	    xmlHttp.onreadystatechange = handleServerResponses;
 	    xmlHttp.send(null);
 	}
-	else
+	else//error on AJAX request
 	{
 		alert("OOOPS");
 	}
@@ -69,7 +69,7 @@ function processorder()
 
 var lis = [];
 
-function handleServerResponses()
+function handleServerResponses()//display AJAX request results
 {
 	if(xmlHttp.readyState==4)
 	{ 
